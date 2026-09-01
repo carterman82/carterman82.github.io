@@ -331,6 +331,27 @@
       .nav-table, .nav-table tbody, .nav-table tr, .nav-table td { display: block; width: 100%; }
       .report { padding-inline: 14px; }
     }
+
+    .stockticker {
+    background: #1a0000;
+    color: #ff3b3b;
+    font-size: 28px;
+    font-weight: bold;
+    padding: 14px 0;
+    border-top: 2px solid #ff3b3b;
+    border-bottom: 2px solid #ff3b3b;
+    letter-spacing: 1px;
+  }
+  .down {
+    color: #ff3b3b;
+  }
+  .arrow {
+    color: #ff3b3b;
+  }
+  .sep {
+    color: #661111;
+    margin: 0 18px;
+  }
   </style>
 </head>
 <body>
@@ -510,9 +531,35 @@ For WEEKS, something has been moving through the vents of Kahlert Village. <stro
 
     <hr class="spark-rule">
 
-    <img class="retro-gif animated-divider" width="360" height="22"
+    <!-- <img class="retro-gif animated-divider" width="360" height="22"
       src="data:image/gif;base64,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"
-      alt="An animated neon star divider">
+      alt="An animated neon star divider"> -->
+    <marquee behavior="scroll" direction="left" scrollamount="6" class="'stockticker">
+  PYPL <span class="down">-12.7%</span> <span class="arrow">▼</span>
+  <span class="sep"></span>
+  EIX <span class="down">-22.0%</span> <span class="arrow">▼</span>
+  <span class="sep"></span>
+  PCG <span class="down">-16.0%</span> <span class="arrow">▼</span>
+  <span class="sep"></span>
+  TTWO <span class="down">-6.5%</span> <span class="arrow">▼</span>
+  <span class="sep"></span>
+  GOOGL <span class="down">-2.49%</span> <span class="arrow">▼</span>
+  <span class="sep"></span>
+  AMZN <span class="down">-1.69%</span> <span class="arrow">▼</span>
+  <span class="sep"></span>
+  PINS <span class="down">-3.0%</span> <span class="arrow">▼</span>
+  <span class="sep"></span>
+  BA <span class="down">-1.34%</span> <span class="arrow">▼</span>
+  <span class="sep"></span>
+  DJIA <span class="down">-0.70%</span> <span class="arrow">▼</span>
+  <span class="sep"></span>
+  SPX <span class="down">-0.33%</span> <span class="arrow">▼</span>
+  <span class="sep"></span>
+  IXIC <span class="down">-0.12%</span> <span class="arrow">▼</span>
+  <span class="sep"></span>
+  IWM (Russell 2000) <span class="down">-0.83%</span> <span class="arrow">▼</span>
+  <span class="sep"></span>
+</marquee>
 
     <section class="report" id="faq">
       <h2>Frequently Avoided Questions</h2>
